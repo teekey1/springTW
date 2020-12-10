@@ -14,10 +14,12 @@ public class User {
     private String name;
     private String surname;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "details_id", referencedColumnName = "id")
+    @JoinColumn(name = "details_id")
     private ContactDetails contactDetails;
     @ManyToMany(cascade = { CascadeType.ALL })
     private Set<Car> cars = new HashSet<>();
+
+    public User(){}
 
     public User(String name, String surname, ContactDetails contactDetails) {
         this.name = name;

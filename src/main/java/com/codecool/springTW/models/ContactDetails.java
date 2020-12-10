@@ -12,10 +12,8 @@ public class ContactDetails {
     private String email;
     private String city;
     private String street;
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    @MapsId
-    private User user;
+
+    public ContactDetails(){}
 
     public ContactDetails(String email, String city, String street) {
         this.email = email;
@@ -55,11 +53,4 @@ public class ContactDetails {
         this.street = street;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
