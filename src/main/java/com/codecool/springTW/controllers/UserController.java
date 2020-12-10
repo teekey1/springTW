@@ -6,10 +6,10 @@ import com.codecool.springTW.services.UserService;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
@@ -19,13 +19,24 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping(path = "/{id}")
-    public Optional<User> getUser(@PathVariable Long id){
+    @GetMapping("/users")
+    public List<User> getUsers(){
+        return userService.getAllUsers();
+    }
+
+    @GetMapping("users/{id}")
+    public User getUser(@PathVariable Long id){
         return userService.getUserById(id);
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping("users/{id}")
     public void removeUser(@PathVariable Long id) {
         userService.removeUser(id);
     }
+
+    @PostMapping("/users/add")
+    public void addPerson(@RequestBody User user){
+        System.out.println("User added");
+    }
+
 }
